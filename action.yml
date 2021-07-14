@@ -1,0 +1,44 @@
+name: "lintian-brush"
+description: >
+  Run lintian-brush to automatically fix some common issues in Debian packages
+inputs:
+  git-user-name:
+    description: >
+      Username to use for git commits
+    required: false
+    default: 'lintian-brush'
+  git-user-email:
+    description: >
+      Email address to use for git commits.
+    required: false
+    default: 'noreply@github.com'
+  directory:
+    description: >
+      Set lintian-brush --directory option.
+
+      Directory to run in
+    required: false
+  no-update-changelog:
+    description: >
+      Set lintian-brush --no-update-changelog option.
+
+      Do not update the changelog.
+    required: false
+    default: false
+  modern:
+    description: >
+      Set lintian-brush --modern option.
+
+      Use features/compatibility levels that are not available in stable.
+      (makes backporting harder)
+    required: false
+    default: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.git-user-name }}
+    - ${{ inputs.git-user-email }}
+    - ${{ inputs.directory }}
+    - ${{ inputs.no-update-changelog }}
+    - ${{ inputs.modern }}
