@@ -1,0 +1,26 @@
+name: "lintian-brush"
+description: >
+  Run lintian-brush to automatically fix some common issues in Debian packages
+inputs:
+  directory:
+    description: >
+      Directory to run in
+    required: false
+  no_update_changelog:
+    description: >
+      Do not update the changelog
+    required: false
+    default: false
+  modern:
+    description: >
+      Use features/compatibility levels that are not available in stable.
+      (makes backporting harder)
+    required: false
+    default: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.directory }}
+    - ${{ inputs.no_update_changelog }}
+    - ${{ inputs.modern }}
