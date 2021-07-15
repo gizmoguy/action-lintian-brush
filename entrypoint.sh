@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+set -x
+
 GIT_USER_NAME="${1}"
 GIT_USER_EMAIL="${2}"
 LINTIAN_BRUSH_DIRECTORY="${3}"
